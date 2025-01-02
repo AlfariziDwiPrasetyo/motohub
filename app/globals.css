@@ -8,6 +8,9 @@ body {
   color: white;
   background-color: #121212;
 }
+div {
+  background-color: inherit; /* Ensures that div inherits body background */
+}
 
 .appearance-none {
   -webkit-appearance: none;
