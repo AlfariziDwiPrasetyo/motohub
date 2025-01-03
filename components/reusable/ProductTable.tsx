@@ -1,16 +1,18 @@
-import { getAllProduct } from "@/lib/actions/product";
+"use client";
+
+import { trpc } from "@/app/_trpc/client";
 import React from "react";
 import { BsPencilFill } from "react-icons/bs";
 import { TbTrashFilled } from "react-icons/tb";
 
-async function ProductTable() {
-  const product = await getAllProduct();
+function ProductTable() {
+  const product = trpc.product.getAllProducts.useQuery();
 
   return (
     <table className="table">
       <thead>
         <tr>
-          <th></th>
+          <th>Id</th>
           <th>Name</th>
           <th>Category</th>
           <th>Description</th>
@@ -18,7 +20,7 @@ async function ProductTable() {
         </tr>
       </thead>
       <tbody>
-        {product.map((d, id) => (
+        {product?.data?.map((d, id) => (
           <tr key={id}>
             <th>{d.id}</th>
             <td>{d.name}</td>
