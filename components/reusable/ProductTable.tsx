@@ -6,7 +6,11 @@ import { BsPencilFill } from "react-icons/bs";
 import { TbTrashFilled } from "react-icons/tb";
 
 function ProductTable() {
-  const product = trpc.product.getAllProducts.useQuery();
+  const { data, isLoading } = trpc.product.getAllProducts.useQuery();
+
+  if (isLoading) {
+    return <div>is loading ....</div>;
+  }
 
   return (
     <table className="table">
@@ -20,7 +24,7 @@ function ProductTable() {
         </tr>
       </thead>
       <tbody>
-        {product?.data?.map((d, id) => (
+        {data?.map((d, id) => (
           <tr key={id}>
             <th>{d.id}</th>
             <td>{d.name}</td>
