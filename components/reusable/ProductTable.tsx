@@ -2,8 +2,8 @@
 
 import { trpc } from "@/app/_trpc/client";
 import React from "react";
-import { BsPencilFill } from "react-icons/bs";
-import { TbTrashFilled } from "react-icons/tb";
+import EditProductButton from "./EditProductButton";
+import DeleteProductButton from "./DeleteProductButton";
 
 function ProductTable() {
   const { data, isLoading } = trpc.product.getAllProducts.useQuery();
@@ -20,6 +20,7 @@ function ProductTable() {
           <th>Name</th>
           <th>Category</th>
           <th>Description</th>
+          <th>Price</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -30,13 +31,10 @@ function ProductTable() {
             <td>{d.name}</td>
             <td>{d.category}</td>
             <td>{d.description}</td>
+            <td>{d.price}</td>
             <td className="flex items-center gap-4">
-              <button className="bg-yellow-500  p-4 rounded-md ">
-                <BsPencilFill />
-              </button>
-              <button className="bg-red-500  p-4 rounded-md">
-                <TbTrashFilled />
-              </button>
+              <EditProductButton />
+              <DeleteProductButton />
             </td>
           </tr>
         ))}
