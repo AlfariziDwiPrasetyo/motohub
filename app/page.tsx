@@ -1,4 +1,5 @@
 import ProductCard from "@/components/reusable/ProductCard";
+import ProductCardWrapper from "@/components/reusable/ProductCardWrapper";
 import { mockupProduct, navMenu } from "@/lib/data";
 
 export default function Home() {
@@ -45,88 +46,6 @@ export default function Home() {
         <div className="w-full h-full absolute top-0 bg-gradient-to-b from-belibang-black/70 to-belibang-black z-0"></div>
       </header>
 
-      {/* <section
-        id="Category"
-        className="container max-w-[1130px] mx-auto mb-[102px] flex flex-col gap-8"
-      >
-        <h2 className="font-semibold text-[32px]">Category</h2>
-        <div className="flex justify-between items-center">
-          <a
-            href=""
-            className="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-          >
-            <div className="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-              <div className="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                <img src="/assets/images/icons/cart.svg" alt="icon" />
-              </div>
-              <div className="px-[6px] flex flex-col text-left">
-                <p className="font-bold text-sm">All Products</p>
-                <p className="text-xs text-belibang-grey">
-                  Everything in One Place
-                </p>
-              </div>
-            </div>
-          </a>
-          <a
-            href=""
-            className="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-          >
-            <div className="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-              <div className="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                <img src="/assets/images/icons/laptop.svg" alt="icon" />
-              </div>
-              <div className="px-[6px] flex flex-col text-left">
-                <p className="font-bold text-sm">Templates</p>
-                <p className="text-xs text-belibang-grey">Designs Made Easy</p>
-              </div>
-            </div>
-          </a>
-          <a
-            href=""
-            className="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-          >
-            <div className="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-              <div className="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                <img src="/assets/images/icons/book.svg" alt="icon" />
-              </div>
-              <div className="px-[6px] flex flex-col text-left">
-                <p className="font-bold text-sm">Ebooks</p>
-                <p className="text-xs text-belibang-grey">Read and Learn</p>
-              </div>
-            </div>
-          </a>
-          <a
-            href=""
-            className="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-          >
-            <div className="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-              <div className="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                <img src="/assets/images/icons/hat.svg" alt="icon" />
-              </div>
-              <div className="px-[6px] flex flex-col text-left">
-                <p className="font-bold text-sm">Courses</p>
-                <p className="text-xs text-belibang-grey">Expand Your Skills</p>
-              </div>
-            </div>
-          </a>
-          <a
-            href=""
-            className="group category-card w-fit h-fit p-[1px] rounded-2xl bg-img-transparent hover:bg-img-purple-to-orange transition-all duration-300"
-          >
-            <div className="flex flex-col p-[18px] rounded-2xl w-[210px] bg-img-black-gradient group-active:bg-img-black transition-all duration-300">
-              <div className="w-[58px] h-[58px] flex shrink-0 items-center justify-center">
-                <img src="/assets/images/icons/pen.svg" alt="icon" />
-              </div>
-              <div className="px-[6px] flex flex-col text-left">
-                <p className="font-bold text-sm">Fonts</p>
-                <p className="text-xs text-belibang-grey">
-                  Typography Selection
-                </p>
-              </div>
-            </div>
-          </a>
-        </div>
-      </section> */}
       <section
         id="NewProduct"
         className="container max-w-[1130px] mx-auto mb-[102px] flex flex-col gap-8 px-5"
@@ -134,11 +53,7 @@ export default function Home() {
         <h2 className="font-semibold text-[36px] md:text-[48px] mt-5 px-2">
           New Product
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 px-2 gap-[22px]">
-          {mockupProduct.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        <ProductCardWrapper />
       </section>
       {/* <section id="Testimonial" className="mb-[102px] flex flex-col gap-8">
         <div className="container max-w-[1130px] mx-auto flex justify-between items-center">
