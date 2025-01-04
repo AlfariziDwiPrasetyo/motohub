@@ -34,7 +34,7 @@ function ProductTable() {
             <td>{d.price}</td>
             <td className="flex items-center gap-4">
               <EditProductButton />
-              <DeleteProductButton />
+              <DeleteProductButton id={d.id} />
             </td>
           </tr>
         ))}

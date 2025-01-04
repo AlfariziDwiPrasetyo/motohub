@@ -1,13 +1,31 @@
 "use client";
+import { trpc } from "@/app/_trpc/client";
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 
-const DeleteProductButton: React.FC = () => {
+const DeleteProductButton = ({ id }: { id: number }) => {
   const openModal = () => {
     const modal = document.getElementById(
-      "add_product_modal"
+      "delete_product_modal"
     ) as HTMLDialogElement | null;
     modal?.showModal();
+  };
+
+  const closeModal = () => {
+    document.getElementById("add_product_modal") as HTMLDialogElement;
+  };
+
+  const deleteProductMutation = trpc.product.deleteProduct.useMutation();
+
+  const handleDelete = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await deleteProductMutation.mutateAsync(id);
+      alert("Product deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      alert("Failed to delete product!");
+    }
   };
 
   return (
@@ -18,15 +36,31 @@ const DeleteProductButton: React.FC = () => {
       >
         <FaTrash />
       </button>
-      <dialog id="add_product_modal" className="modal">
+      <dialog id="delete_product_modal" className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">Hello!</h3>
+          <h3 className="font-bold text-lg">Are you sure ?</h3>
           <p className="py-4">
-            Press ESC key or click the button below to close
+            This action cannot be undone. Are you sure you want to delete this
+            product?
           </p>
           <div className="modal-action">
-            <form method="dialog">
-              <button className="btn">Close</button>
+            <form method="dialog" className="space-x-4" onSubmit={handleDelete}>
+              <button type="submit" className="btn btn-error">
+                Delete
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  (
+                    document.getElementById(
+                      "delete_product_modal"
+                    ) as HTMLDialogElement
+                  )?.close()
+                }
+                className="btn"
+              >
+                Cancel
+              </button>
             </form>
           </div>
         </div>
