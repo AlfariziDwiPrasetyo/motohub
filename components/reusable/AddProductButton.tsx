@@ -6,7 +6,7 @@ import { UploadButton } from "@/lib/uploadthing";
 
 const AddProductButton: React.FC = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null); // State for storing uploaded image URL
-
+  const getProducts = trpc.product.getAllProducts.useQuery();
   const addProduct = trpc.product.addProduct.useMutation({
     onSuccess: () => {
       console.log("Product added successfully");
@@ -16,6 +16,9 @@ const AddProductButton: React.FC = () => {
     },
     onError: (error) => {
       console.error("Error adding product:", error);
+    },
+    onSettled: () => {
+      getProducts.refetch();
     },
   });
 
@@ -132,7 +135,6 @@ const AddProductButton: React.FC = () => {
                 onClientUploadComplete={(res) => {
                   if (res && res.length > 0) {
                     setImageUrl(res[0].url);
-                    alert(`Image uploaded successfully! ${res[0]}`);
                   }
                 }}
                 onUploadError={(error) => {
