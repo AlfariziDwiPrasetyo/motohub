@@ -3,7 +3,7 @@ import { trpc } from "@/app/_trpc/client";
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 
-const DeleteProductButton = ({ id }: { id: number }) => {
+const DeleteProductButton = ({ id }: { id: string }) => {
   const openModal = () => {
     const modal = document.getElementById(
       "delete_product_modal"
@@ -15,13 +15,18 @@ const DeleteProductButton = ({ id }: { id: number }) => {
     document.getElementById("add_product_modal") as HTMLDialogElement;
   };
 
-  const deleteProductMutation = trpc.product.deleteProduct.useMutation();
+  const getProducts = trpc.product.getAllProducts.useQuery();
+
+  const deleteProductMutation = trpc.product.deleteProduct.useMutation({
+    onSettled: () => {
+      getProducts.refetch();
+    },
+  });
 
   const handleDelete = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       await deleteProductMutation.mutateAsync(id);
-      alert("Product deleted successfully!");
     } catch (error) {
       console.error("Error deleting product:", error);
       alert("Failed to delete product!");
