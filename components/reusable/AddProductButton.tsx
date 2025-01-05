@@ -5,7 +5,8 @@ import React, { useState } from "react";
 import { UploadButton } from "@/lib/uploadthing";
 
 const AddProductButton: React.FC = () => {
-  const [imageUrl, setImageUrl] = useState<string | null>(null); // State for storing uploaded image URL
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
+
   const getProducts = trpc.product.getAllProducts.useQuery();
   const addProduct = trpc.product.addProduct.useMutation({
     onSuccess: () => {
@@ -62,6 +63,8 @@ const AddProductButton: React.FC = () => {
                 console.error("Invalid form data", data);
                 return;
               }
+
+              console.log(data);
 
               addProduct.mutate(data);
             }}

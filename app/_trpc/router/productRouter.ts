@@ -12,7 +12,7 @@ export const productRouter = router({
     }
   }),
 
-  getProductById: publicProcedure.input(z.number()).query(async ({ input }) => {
+  getProductById: publicProcedure.input(z.string()).query(async ({ input }) => {
     try {
       const product = await prisma.product.findFirst({
         where: { id: input },
@@ -47,7 +47,7 @@ export const productRouter = router({
     }),
 
   deleteProduct: publicProcedure
-    .input(z.number())
+    .input(z.string())
     .mutation(async ({ input }) => {
       try {
         await prisma.product.delete({
@@ -63,7 +63,7 @@ export const productRouter = router({
   updateProduct: publicProcedure
     .input(
       z.object({
-        id: z.number(),
+        id: z.string(),
         product: z.object({
           name: z.string().optional(),
           description: z.string().optional(),
