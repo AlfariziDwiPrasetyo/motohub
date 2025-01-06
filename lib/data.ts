@@ -7,7 +7,7 @@ export const navMenu = [
   { name: "Tentang", url: "/" },
   { name: "Produk", url: "/" },
   { name: "Benefit", url: "/" },
-  { name: "Kontak", url: "/" },
+  { name: "Kontak", url: "/kontak" },
   { name: "Admin", url: "/admin" },
 ];
 export const adminNavMenu = [{ name: "Add Motor", url: "/add" }];
