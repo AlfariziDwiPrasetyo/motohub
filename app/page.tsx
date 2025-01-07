@@ -1,6 +1,7 @@
 import Benefit from "@/components/Benefit";
 import ProductCard from "@/components/reusable/ProductCard";
 import ProductCardWrapper from "@/components/reusable/ProductCardWrapper";
+import SearchBar from "@/components/reusable/SearchBar";
 import { mockupProduct, navMenu } from "@/lib/data";
 
 export default function Home() {
@@ -19,30 +20,8 @@ export default function Home() {
               Change the way you ride to experience better journeys.
             </p>
           </div>
-          <div className="flex w-full justify-center mb-[34px] z-10">
-            <form className="group/search-bar p-[14px_18px] bg-belibang-darker-grey ring-1 ring-[#414141] hover:ring-[#888888] max-w-full md:max-w-[560px] w-full rounded-full transition-all duration-300">
-              <div className="relative text-left">
-                <button className="absolute inset-y-0 left-0 flex items-center">
-                  <img
-                    src="/assets/images/icons/search-normal.svg"
-                    alt="icon"
-                  />
-                </button>
-                <input
-                  type="text"
-                  id="searchInput"
-                  className="w-full pl-[36px] focus:outline-none placeholder:text-[#595959] pr-9 bg-belibang-darker-grey"
-                  placeholder="Type anything to search..."
-                />
-                {/* <input
-                  // type="reset"
-                  id="resetButton"
-                  className="close-button w-[38px] h-[38px] flex shrink-0 bg-[url('/assets/images/icons/close.svg')] hover:bg-[url('/assets/images/icons/close-white.svg')] transition-all duration-300 appearance-none transform -translate-x-1/2 -translate-y-1/2 absolute top-1/2 -right-5"
-                  defaultValue=""
-                /> */}
-              </div>
-            </form>
-          </div>
+          //Search Bar
+          <SearchBar />
         </div>
         <div className="w-full h-full absolute top-0 bg-gradient-to-b from-belibang-black/70 to-belibang-black z-0"></div>
       </header>
