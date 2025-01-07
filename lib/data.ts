@@ -5,7 +5,7 @@ import { BiSupport, BiTagAlt } from "react-icons/bi";
 export const navMenu = [
   { name: "Beranda", url: "/" },
   { name: "Tentang", url: "/" },
-  { name: "Produk", url: "/" },
+  { name: "Produk", url: "/produk" },
   { name: "Benefit", url: "/" },
   { name: "Kontak", url: "/kontak" },
   { name: "Admin", url: "/admin" },

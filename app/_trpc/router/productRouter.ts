@@ -3,14 +3,41 @@ import prisma from "@/lib/helper/prisma";
 import { publicProcedure, router } from "../trpc";
 
 export const productRouter = router({
-  getAllProducts: publicProcedure.query(async () => {
-    try {
-      return await prisma.product.findMany();
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      throw new Error("Failed to fetch products");
-    }
-  }),
+  getAllProducts: publicProcedure
+    .input(
+      z.object({
+        query: z.string().optional(),
+      })
+    )
+    .query(async ({ input }) => {
+      try {
+        const searchCondition = input?.query
+          ? {
+              OR: [
+                {
+                  name: {
+                    contains: input.query,
+                  },
+                },
+                {
+                  description: {
+                    contains: input.query,
+                  },
+                },
+              ],
+            }
+          : {};
+
+        const products = await prisma.product.findMany({
+          where: searchCondition,
+        });
+
+        return products;
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        throw new Error("Failed to fetch products");
+      }
+    }),
 
   getProductById: publicProcedure.input(z.string()).query(async ({ input }) => {
     try {

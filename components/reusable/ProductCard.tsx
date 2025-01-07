@@ -14,7 +14,7 @@ function ProductCard({ product }: ProductCardProps) {
       className="product-card flex flex-col rounded-[18px] bg-[#181818] overflow-hidden"
     >
       <a
-        href={`/product/${id}`}
+        href={`/produk/${id}`}
         className="thumbnail w-full h-[180px] flex shrink-0 overflow-hidden relative"
       >
         <img

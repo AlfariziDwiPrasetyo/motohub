@@ -3,8 +3,15 @@ import React from "react";
 import ProductCard from "./ProductCard";
 import { trpc } from "@/app/_trpc/client";
 
-function ProductCardWrapper() {
-  const { data, isLoading } = trpc.product.getAllProducts.useQuery();
+interface ProductCardWrapperProps {
+  searchQuery?: string;
+}
+
+function ProductCardWrapper({ searchQuery }: ProductCardWrapperProps) {
+  const { data, isLoading } = trpc.product.getAllProducts.useQuery({
+    query: searchQuery || "",
+  });
+
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 px-2 gap-[22px]">
       {isLoading ? (
